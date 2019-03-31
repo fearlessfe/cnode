@@ -7,6 +7,9 @@ function resolvePath(filePath) {
 
 module.exports = {
   mode: 'development',
+  resolve: {
+    extensions: ['.js','.jsx']
+  },
   entry: {
     app: resolvePath('../client/app.js')
   },
