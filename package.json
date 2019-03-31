@@ -4,7 +4,7 @@
   "description": "penny",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "webpack --config build/webpack.config.js"
   },
   "repository": {
     "type": "git",
@@ -20,5 +20,11 @@
   "bugs": {
     "url": "https://github.com/fearlessfe/cnode/issues"
   },
-  "homepage": "https://github.com/fearlessfe/cnode#readme"
+  "homepage": "https://github.com/fearlessfe/cnode#readme",
+  "devDependencies": {
+    "webpack": "^4.29.6"
+  },
+  "dependencies": {
+    "react": "^16.8.6"
+  }
 }
