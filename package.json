@@ -4,7 +4,11 @@
   "description": "penny",
   "main": "index.js",
   "scripts": {
-    "build": "webpack --config build/webpack.config.js"
+    "build:client": "webpack --config build/webpack.config.client.js",
+    "build:server": "webpack --config build/webpack.config.server.js",
+    "clear": "rimraf dist",
+    "build": "npm run clear && npm run build:client && npm run build:server",
+    "start": "node server/server.js"
   },
   "repository": {
     "type": "git",
@@ -26,10 +30,12 @@
     "@babel/preset-react": "^7.0.0",
     "babel-loader": "^8.0.5",
     "html-webpack-plugin": "^3.2.0",
+    "rimraf": "^2.6.3",
     "webpack": "^4.29.6",
     "webpack-cli": "^3.3.0"
   },
   "dependencies": {
+    "express": "^4.16.4",
     "react": "^16.8.6",
     "react-dom": "^16.8.6"
   }

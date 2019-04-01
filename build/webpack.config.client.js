@@ -16,7 +16,7 @@ module.exports = {
   output: {
     filename: '[name].[hash].js',
     path: resolvePath('../dist'),
-    publicPath: ''
+    publicPath: '/public'
   },
   module: {
     rules: [
@@ -34,6 +34,8 @@ module.exports = {
     ]
   },
   plugins: [
-    new HTMLPlugin()
+    new HTMLPlugin({
+      template: resolvePath('../client/template.html')
+    })
   ]
 }
