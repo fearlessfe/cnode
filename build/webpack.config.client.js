@@ -13,7 +13,7 @@ config = {
     extensions: ['.js','.jsx']
   },
   entry: {
-    app: resolvePath('../client/app.js')
+    app: resolvePath('../client/main.js')
   },
   output: {
     filename: '[name].[hash].js',
