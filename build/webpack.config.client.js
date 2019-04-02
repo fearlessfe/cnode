@@ -1,5 +1,6 @@
 const path = require('path')
 const HTMLPlugin = require('html-webpack-plugin')
+const webpack = require('webpack');
 
 const isDev = process.env.NODE_ENV === 'development'
 
@@ -18,7 +19,7 @@ config = {
   output: {
     filename: '[name].[hash].js',
     path: resolvePath('../dist'),
-    publicPath: '/public'
+    publicPath: '/public/'
   },
   module: {
     rules: [
@@ -47,7 +48,7 @@ if (isDev) {
     host: '0.0.0.0',
     port: '8888',
     contentBase: path.join(__dirname, '../dist'),
-    // hot: true,
+    hot: true,
     overlay: {
       errors: true
     },
@@ -56,6 +57,9 @@ if (isDev) {
       index: '/public/index.html'
     }
   }
+  // https://www.webpackjs.com/guides/hot-module-replacement/
+  // config.plugins.push(new webpack.NamedModulesPlugin())
+  // config.plugins.push(new webpack.HotModuleReplacementPlugin())
 }
 
 module.exports = config
