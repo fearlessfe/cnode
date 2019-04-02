@@ -1,11 +1,13 @@
 const path = require('path')
 const HTMLPlugin = require('html-webpack-plugin')
 
+const isDev = process.env.NODE_ENV === 'development'
+
 function resolvePath(filePath) {
   return path.join(__dirname, filePath);
 }
 
-module.exports = {
+config = {
   mode: 'development',
   resolve: {
     extensions: ['.js','.jsx']
@@ -39,3 +41,21 @@ module.exports = {
     })
   ]
 }
+
+if (isDev) {
+  config.devServer = {
+    host: '0.0.0.0',
+    port: '8888',
+    contentBase: path.join(__dirname, '../dist'),
+    // hot: true,
+    overlay: {
+      errors: true
+    },
+    publicPath: '/public',
+    historyApiFallback: {
+      index: '/public/index.html'
+    }
+  }
+}
+
+module.exports = config
