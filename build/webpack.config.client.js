@@ -1,6 +1,9 @@
 const path = require('path')
 const HTMLPlugin = require('html-webpack-plugin')
 const webpack = require('webpack');
+const webpackMerge = require('webpack-merge')
+
+const baseConfig = require('./webpack.config.base')
 
 const isDev = process.env.NODE_ENV === 'development'
 
@@ -8,48 +11,19 @@ function resolvePath(filePath) {
   return path.join(__dirname, filePath);
 }
 
-config = {
-  mode: 'development',
-  resolve: {
-    extensions: ['.js','.jsx']
-  },
+const config = webpackMerge(baseConfig, {
   entry: {
     app: resolvePath('../client/main.js')
   },
   output: {
     filename: '[name].[hash].js',
-    path: resolvePath('../dist'),
-    publicPath: '/public/'
-  },
-  module: {
-    rules: [
-      {
-        enforce: 'pre',
-        test: /.jsx$/,
-        loader: 'eslint-loader',
-        exclude: [
-          resolvePath('../node_modules')
-        ]
-      },
-      {
-        test: /.jsx$/,
-        loader: 'babel-loader'
-      },
-      {
-        test: /js$/,
-        loader: 'babel-loader',
-        exclude: [
-          resolvePath('../node_modules')
-        ]
-      }
-    ]
   },
   plugins: [
     new HTMLPlugin({
       template: resolvePath('../client/template.html')
     })
   ]
-}
+})
 
 if (isDev) {
   config.devServer = {
@@ -60,7 +34,7 @@ if (isDev) {
     overlay: {
       errors: true
     },
-    publicPath: '/public',
+    publicPath: '/public/',
     historyApiFallback: {
       index: '/public/index.html'
     }
