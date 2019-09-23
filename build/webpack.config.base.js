@@ -1,13 +1,17 @@
 const path = require('path')
 
-function resolvePath(filePath) {
-  return path.join(__dirname, filePath);
+function resolvePath (filePath) {
+  return path.join(__dirname, filePath)
 }
 
 module.exports = {
   mode: 'development',
   resolve: {
-    extensions: ['.js','.jsx']
+    extensions: ['.js', '.jsx'],
+    alias: {
+      '@': resolvePath('../client/'),
+      Build: resolvePath('../build')
+    }
   },
   output: {
     path: resolvePath('../dist'),
@@ -37,4 +41,3 @@ module.exports = {
     ]
   }
 }
-

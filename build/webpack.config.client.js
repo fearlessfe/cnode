@@ -1,14 +1,14 @@
 const path = require('path')
 const HTMLPlugin = require('html-webpack-plugin')
-const webpack = require('webpack');
+// const webpack = require('webpack')
 const webpackMerge = require('webpack-merge')
 
 const baseConfig = require('./webpack.config.base')
 
 const isDev = process.env.NODE_ENV === 'development'
 
-function resolvePath(filePath) {
-  return path.join(__dirname, filePath);
+function resolvePath (filePath) {
+  return path.join(__dirname, filePath)
 }
 
 const config = webpackMerge(baseConfig, {
@@ -16,7 +16,7 @@ const config = webpackMerge(baseConfig, {
     app: resolvePath('../client/main.js')
   },
   output: {
-    filename: '[name].[hash].js',
+    filename: '[name].[hash].js'
   },
   plugins: [
     new HTMLPlugin({
